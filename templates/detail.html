@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container main-part">
+    {% if contacts %}
+      {% for contact in contacts %}
+      <!-- Card for details -->
+      <div class="card my-2 mx-2 detail-card">
+      <img src="{{contact.image.url}}" class="img-fluid" />
+
+        
+        <div class="card-header">
+          <a href="detail.html" class="text-white header-link"
+            ><i class="fas fa-user-graduate mr-2"></i>{{contact.name}}</a
+          >
+        </div>
+        <div class="card-body pb-0">
+          <p>
+            <i class="fas fa-at mr-2"></i>
+            <a href="mailto:{{contact.email}}">{{contact.email}}</a>
+          </p>
+          <p>
+            <i class="fas fa-phone mr-2"></i>
+            <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+          </p>
+          <p><i class="fas fa-info-circle mr-2"></i>{{contact.stream}}</p>
+          <p><i class="fas fa-video mr-2"></i><a  href="{{contact.video.url}}"><u>Video</u></a> <i class="far fa-hand-point-down ml-2"></i></p>
+          <hr />
+              <video width="200" height="130" controls>
+                <source src="{{contact.video.url}}">
+  
+         Your browser does not support the video tag.
+                </video>
+        </div>
+      </div>   
+      
+      
+      
+      
+      
+      {% endfor %}
+    
+    {% else %}
+     <p>No Data Found</p>
+    
+    {% endif %}
+      
+    </div>
+    <hr />
+      <a class="text-center" href="{% url 'home' %}">Back To Home</a>
+{% endblock content %}
+
